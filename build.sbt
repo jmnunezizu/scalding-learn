@@ -15,10 +15,15 @@ resolvers ++= Seq(
   "ClouderaRcs"   at "https://repository.cloudera.com/artifactory/cdh-releases-rcs",
   "Twitter Maven" at "http://maven.twttr.com",
   "MVN Repo"      at "http://mvnrepository.com/artifact",
-  "releases"      at "http://scala-tools.org/repo-releases"
+  "releases"      at "http://scala-tools.org/repo-releases",
+  "Conjars"       at "http://conjars.org/repo"
 )
 
 libraryDependencies ++= Seq(
+  "cascading" % "cascading-core" % "3.0.0",
+  "cascading" % "cascading-local" % "3.0.0",
+  "cascading" % "cascading-hadoop" % "3.0.0",
+
   "com.twitter" %% "scalding-core" % "0.15.0",
   "com.twitter" %% "scalding-args" % "0.15.0",
 
