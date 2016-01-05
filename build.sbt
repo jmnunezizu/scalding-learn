@@ -24,8 +24,8 @@ libraryDependencies ++= Seq(
   "cascading" % "cascading-local" % "3.0.0",
   "cascading" % "cascading-hadoop" % "3.0.0",
 
-  "com.twitter" %% "scalding-core" % "0.15.0",
-  "com.twitter" %% "scalding-args" % "0.15.0",
+  "com.twitter" %% "scalding-core" % "0.15.0" exclude("cascading", "cascading-local") exclude("cascading", "cascading-hadoop") exclude("cascading", "cascading-core"),
+  "com.twitter" %% "scalding-args" % "0.15.0" exclude("cascading", "cascading-local") exclude("cascading", "cascading-hadoop") exclude("cascading", "cascading-core"),
 
   "org.apache.hadoop" % "hadoop-core" % "1.2.1",
   "org.apache.hadoop" % "hadoop-common" % "2.7.1",
