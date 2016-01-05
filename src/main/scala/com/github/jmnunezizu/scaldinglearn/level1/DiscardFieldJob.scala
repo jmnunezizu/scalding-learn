@@ -1,7 +1,7 @@
 package com.github.jmnunezizu.scaldinglearn.level1
 
 import com.twitter.scalding.typed.TypedPipe
-import com.twitter.scalding.{TextLine, TypedTsv, Job, Args}
+import com.twitter.scalding.{TypedTsv, Job, Args}
 
 case class TupleWithNoise(noise: String, value: String) {
   def toTuple: (String, String) = (noise, value)
@@ -17,10 +17,9 @@ class DiscardFieldJob(args: Args) extends Job(args) {
   val outputPath = args("output")
 
   val rawInput: TypedPipe[(String, String)] = TypedPipe.from(TypedTsv[(String, String)](inputPath))
-//  val rawInput: TypedPipe[String] = TypedPipe.from(TextLine(inputPath))
 
   rawInput
-    .map(TupleWithNoise.fromTuple(_).value) // just get the value
+    .map(TupleWithNoise.fromTuple(_).value)
     .write(TypedTsv[String](outputPath))
 
 }

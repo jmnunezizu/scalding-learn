@@ -33,4 +33,10 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-core" % "3.6.4" % "test"
 )
 
+val settings = Seq(
+  fork in run := true,
+  fork in Test := true,
+  fork in testOnly := true
+)
+
 scalacOptions in Test ++= Seq("-Yrangepos")

@@ -8,18 +8,15 @@ import scala.io.Source
 
 class DiscardFieldJobSpec extends Specification with JobTestSupport with FieldConversions {
 
-//  val inputFile = List(
-//    ("1", "a"),
-//    ("2", "b"),
-//    ("3", "c")
-//  )
-
   "A DiscardField Job" should {
-    "discard the field 'discardme'" in {
+    "discard the first column" in {
+      val inputFile = Source.fromFile("src/test/resources/level1/source.txt").getLines.toList.map(t => {
+        val pieces = t.split("\t")
+        (pieces(0), pieces(1))
+      })
+
       var actual = List.empty[String]
       val expected = getSource("src/test/resources/level1/expectation.txt")
-      val inputFile = Source.fromFile("src/test/resources/level1/source.txt").getLines.toList
-      inputFile.foreach(println)
 
       JobTest(new DiscardFieldJob(_))
         .arg("input", "inputFile")
@@ -31,7 +28,7 @@ class DiscardFieldJobSpec extends Specification with JobTestSupport with FieldCo
         .runHadoop
         .finish
 
-      actual must beEqualTo(List("a", "b", "c"))
+      actual must beEqualTo(expected)
     }
   }
 
